@@ -1,0 +1,15 @@
+# Ignore everything
+/*
+
+# Keep .gitignore itself
+!.gitignore
+
+# Include only these folders
+!/page-object/
+!/page-object/**
+
+!/tests/
+!/tests/**
+
+# But ignore JSON files even inside included folders
+*.json
