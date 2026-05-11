@@ -1,51 +1,44 @@
-import { Locator, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
+import { HelperBase } from "./helperBase";
 
-export class NavigationPage {
+export class NavigationPage extends HelperBase {
 
     //property
-    readonly page : Page;
-    readonly formLayoutMenuItem: Locator
-    readonly datePickerMenuItem: Locator
-    readonly smartTabMenuItem: Locator
-    readonly toastrMenuItem: Locator
-    readonly toolTipMenuItem: Locator
+    // readonly page : Page
+    //deleted due to extending from the helperBase class
 
     //constructor
     constructor(page: Page) {
-        this.page = page
-        this.formLayoutMenuItem = page.getByText('Form Layouts')
-        this.datePickerMenuItem = page.getByText('Datepicker')
-        this.smartTabMenuItem = page.getByText('Smart Table')
-        this.toastrMenuItem = page.getByText('Toastr')
-        this.toolTipMenuItem = page.getByText('Tooltip')
+        super(page)
         
     }
 
     //this is a method
     async formLayoutsPage()  {
     await this.selectGroupMenuItem('Forms')
-    await this.formLayoutMenuItem.click();        
+    await this.page.getByText('Form Layouts').click();       
+    await this.waitForNumberOfSeconds(2) 
     }
 
     async datePickerPage(){
     await this.selectGroupMenuItem('Forms')
     // await this.page.waitForTimeout(1000)
-    await this.datePickerMenuItem.click();    
+    await this.page.getByText('Datepicker').click();    
     }
 
     async smartTablePage(){
     await this.selectGroupMenuItem('Tables & Data')
-    await this.smartTabMenuItem.click()
+    await this.page.getByText('Smart Table').click()
     }
 
     async toastrPage(){
     await this.selectGroupMenuItem('Modal & Overlays');
-    await this.toastrMenuItem.click();    
+    await this.page.getByText('Toastr').click();    
     }
 
     async tooltipPage(){
     await this.selectGroupMenuItem('Modal & Overlays');
-    await this.toolTipMenuItem.click();   
+    await this.page.getByText('Tooltip').click();   
     }
     //methods
 
